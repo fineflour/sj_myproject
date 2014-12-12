@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root 'user#home' 
 
   get 'todo' => 'todo#show'
-  get 'todo' => 'todo#show'
   get 'todo/new' => 'todo#new'
   
   devise_for :users, :controllers => { registrations: 'registrations'}
