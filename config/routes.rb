@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
 
+  get 'todos/new'
+get 'todos/show'
+
+#  get 'sessions/new'
+
   root 'user#home' 
 
-  get 'todo' => 'todo#show'
-  get 'todo/new' => 'todo#new'
-  
-  devise_for :users, :controllers => { registrations: 'registrations'}
+
+  devise_for :users, :controllers => {registrations: 'registrations'}#, sessions:  'sessions'}
+#  devise_for :users, :controllers => {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

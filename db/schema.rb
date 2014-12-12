@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20141211222032) do
 
+  create_table "todos", force: true do |t|
+    t.integer  "user_id"
+    t.string   "description"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "status_updated_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

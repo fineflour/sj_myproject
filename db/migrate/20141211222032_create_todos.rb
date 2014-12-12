@@ -1,7 +1,7 @@
 class CreateTodos < ActiveRecord::Migration
   
   def up 
-    create_table :todos do |t|
+    create_table(:todos) do |t|
         t.integer :user_id
         t.string :description
         t.integer :status_id
@@ -11,8 +11,4 @@ class CreateTodos < ActiveRecord::Migration
         t.timestamps
     end
   end
-
-#  def up
-#    drop_table :todos  
-#  end
 end
