@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
 
 
+  get 'todos/show'
+
+  get 'todos/create'
+
+  get 'todos/update'
+
+  get 'todos/destroy'
+
   get 'todos/new'
 get 'todos/show'
 
 #  get 'sessions/new'
 
   root 'user#home' 
-
+ resources :users
+ resources :todos
 
   devise_for :users, :controllers => {registrations: 'registrations'}#, sessions:  'sessions'}
 #  devise_for :users, :controllers => {sessions: 'sessions'}
