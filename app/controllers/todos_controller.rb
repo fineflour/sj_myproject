@@ -22,12 +22,17 @@ class TodosController < ApplicationController
                    redirect_to @todo
              else
                   render 'new'
-              end
+             end
   end
 
   def update
   end
 
   def destroy
+  end
+
+  def todo_params
+    params[:user_id] = @user_id
+    params[:description]
   end
 end

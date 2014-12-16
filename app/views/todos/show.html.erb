@@ -2,7 +2,7 @@
 <p>Find me in app/views/todo/show.html.erb</p>
 
 <%= @todo %>
-userid : <%= @user_id %>
-
+Description : <%=@todo.description%>
+Created at <%=@todo.created_at%>
 
  <li><%= link_to "Create Todo", 'new' %></li>
