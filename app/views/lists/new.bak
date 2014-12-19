@@ -3,14 +3,13 @@
 <div class="row">
        <div class="col-md-6 col-md-offset-3">
          <%= form_for(@todo) do |f| %>
+
+           <%= f.hidden_field :user_id, :value => @user_id%><br />
              <div class="field"> 
             <%= f.label :description %>
             <%= f.text_field :description %><br />
           </div>
 
-            <div class="field"> 
-            <%= f.label :created_at %>
-            <%= f.text_field :created_at %><br />
           </div>
 
             <%= f.submit "Save", class: "btn btn-primary" %>
