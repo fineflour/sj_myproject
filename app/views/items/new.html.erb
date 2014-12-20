@@ -1,0 +1,14 @@
+<h1>tem#new</h1>
+<p>Find me in app/views/todos/new.html.erb</p>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<%= form_for(@item) do |f|%>
+  <div class="field"> 
+       <%= f.label :name %>
+       <%= f.text_field :name %><br />
+       <%= f.hidden_field :list_id, :value => @list_id %>
+  </div>
+<%=f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>

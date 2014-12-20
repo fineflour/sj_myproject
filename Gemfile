@@ -31,7 +31,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'pry'
-
+gem 'faker',  '1.4.2'
 # Use for datatable rendering
 
 group :assets do

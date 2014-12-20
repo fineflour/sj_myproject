@@ -2,11 +2,10 @@ Rails.application.routes.draw do
 
   #root 'home#index'
 
-#  resources :users
-  resources :lists do
-    resources :item, only: [:create] 
-  end
-    resources :item, only: [:create, :update] 
+  resources :lists #do
+  resources :items, only: [:new, :create, :update, :edit] 
+  #end
+#    resources :item, only: [:create, :update] 
   #get 'lists/show' => 'lists#show'
 
    devise_for :users, :controllers => {registrations: 'registrations'}

@@ -9,8 +9,9 @@ def show
   @list = List.find(params[:id])
   #@list = List.all
   @list = current_user.list
-  user_id = params[:id]
-  @items = Item.find(list_id)
+  list_id = params[:id]
+#  @items = Item.find(list_id)
+  @items = Item.where(list_id: list_id).all
 end
 
   def new
@@ -24,7 +25,7 @@ end
     @list = List.new(list_params)
               if @list.save
                    flash[:success] = "New todo has been created!"
-     redirect_to lists_show_path 
+     redirect_to lists_path 
              else
                   render 'new'
              end
@@ -37,16 +38,15 @@ end
 
   def update
     @list = List.find(params[:id])
-    @list.update
+    @list.update(list_params)
+    redirect_to lists_path
   end
 
-  def delete
-
-  end
 
   def destroy
     @list = List.find(params[:id])
     @list.destroy
+    redirect_to lists_path  
   end
 
   private

@@ -6,16 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-list.create!(title:  "Do to Title",
-             user_id:     1,
-            )
+#List.create!(title:  "Do to Title}",
+#             user_id:     2,
+#            )
 
-10.times do |n|
-   title  = Faker::Title.title
-   user_id = 1
-   list.create!(title:  title,
-                user_id: user_id,
-                activated: true,
-                activated_at: Time.zone.now)
+#10.times do |n|
+#   title  = Faker::Name.title
+#   user_id =2 
+#   List.create!(title:  title,
+#                user_id: user_id,
+#                created_at: true,
+#                updated_at: Time.zone.now)
+#end
+#
+10.times do |n|                                                                                                                     
+    name  = Faker::Name.name                                                                                                       
+    list_id = n+1                                                                                                                      
+     Item.create!(name: name,                                                                                                      
+                  list_id: list_id,                                                                                                   
+                  created_at: true,                                                                                                   
+                  updated_at: Time.zone.now)
 end
 

@@ -22,7 +22,12 @@ end
   end
 
   def edit
-    @item = Item.find(params[:id])
+    if params[:status_id] = 1
+      @item = Item.find(params[:id])
+      @item.update(item_params)
+    else
+      @item = Item.find(params[:id])
+    end
   end
 
 
@@ -42,7 +47,7 @@ end
 
   private
   def item_params
-    params.require(:item).permit(:list_id, :name)                                                                         
+    params.require(:item).permit(:list_id, :name, :status_id)                                                                         
   end
 
   def find_list
