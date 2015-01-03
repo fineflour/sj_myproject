@@ -39,11 +39,12 @@
         <%= f.hidden_field :status_id, :value => "1" %>
         <%= f.hidden_field :id, :value => item.id %>
         <%= f.hidden_field :list_id, :value => item.list_id %>
-        <%= f.check_box 'complete', {:checked => false}, item.id %>
-        <!--%= link_to "Comeplete", edit_item_path(item.id), class: "btn btn-primary btn-xs",  method: "get" %-->
+        <!--%= f.check_box 'complete', {:checked => false}, item.id %-->
+        <%= link_to "Comeplete", edit_item_path(item.id), class: "btn btn-primary btn-xs",  method: "get" %>
       <% end %>
       <%else%> 
-        <input type ="checkbox" checked= "true" disabled >
+        <!--input type ="checkbox" checked= "true" disabled -->
+        completed
       <% end %>
     <%end%>
       </td>
