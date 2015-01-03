@@ -39,7 +39,8 @@
         <%= f.hidden_field :status_id, :value => "1" %>
         <%= f.hidden_field :id, :value => item.id %>
         <%= f.hidden_field :list_id, :value => item.list_id %>
-        <%= f.check_box 'complete', {:checked => false}, item.id %>
+        <%= f.check_box item.id, {:checked => false} %>
+        <%= f.check_box("puppy", "commands", {:multiple => true}, "sit") %>
         <!--%= link_to "Comeplete", edit_item_path(item.id), class: "btn btn-primary btn-xs",  method: "get" %-->
       <% end %>
       <%else%> 
@@ -51,4 +52,3 @@
     </table>
   </div>
 <% end %>
-

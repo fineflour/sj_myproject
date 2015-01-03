@@ -2,16 +2,18 @@ class ListsController < ApplicationController
   before_action :authenticate_user! #:logged_in_user, only: [:index, :edit, :update, :destroy]
 
   def index
-    @lists = List.all
+    @lists = List.all.order('id desc')
+
   end
 
 def show
+  
   @list = List.find(params[:id])
   #@list = List.all
   @list = current_user.list
-  list_id = params[:id]
 #  @items = Item.find(list_id)
-  @items = Item.where(list_id: list_id).all
+  @items = Item.where(list_id: params[:id]).all.order('id desc')
+  #redirect_to list_path(params[:id])
 end
 
   def new

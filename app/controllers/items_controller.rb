@@ -7,6 +7,7 @@ end
 
   def new
 #    pry.binding
+     @list_id = params[:list_id]
      @item = Item.new
   end
 
@@ -14,8 +15,9 @@ end
   def create
     @item = Item.new(item_params)
               if @item.save
+                @list_id = @item.list_id
                    flash[:success] = "New item has been created!"
-     redirect_to items_show_path 
+                   redirect_to list_path(@list_id)  #items_show_path 
              else
                   render 'new'
              end
@@ -23,13 +25,19 @@ end
 
   def edit
     if params[:status_id] = 1
+      @list_id = params[:list_id] 
       @item = Item.find(params[:id])
-      @item.update(item_params)
+      @item.update(:status_id => 1)
+      redirect_to list_path(@item.list_id)
     else
       @item = Item.find(params[:id])
     end
   end
 
+  def complete
+
+    @item = Item.find(params[:item_id])
+  end
 
   def update
     @item = Item.find(params[:id])

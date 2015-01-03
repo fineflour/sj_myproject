@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
   #root 'home#index'
 
+  get 'items/complete' => 'items#complete'
   resources :lists #do
-  resources :items, only: [:new, :create, :update, :edit] 
+  resources :items, only: [:new, :create, :update, :edit, :complete] 
   #end
 #    resources :item, only: [:create, :update] 
   #get 'lists/show' => 'lists#show'

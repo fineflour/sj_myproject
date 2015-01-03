@@ -22,9 +22,11 @@ item >show
     </div>
     
     <div class="col-md-4 col-md-offset-3">
-      <% if item.status_id = 0 %>
+       <% if item.status_id = 0 %>
        <%= item.submit "Complete", class: "btn btn-primary" %> 
-
+      <%= item.hidden_field :list_id, :value => @item.list_id %>
+      <%= item.text_field :list_id, :value => @item.list_id %>
+  
       <%else%>
        <input type ="buton" text= "Completed", class: "btn btn-primary" %> 
       <%end%>
