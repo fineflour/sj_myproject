@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211222032) do
+ActiveRecord::Schema.define(version: 20141219225526) do
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.integer  "list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "status_id",  default: 0, null: false
+  end
+
+  add_index "items", ["list_id"], name: "index_items_on_list_id"
+
+  create_table "lists", force: true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "todos", force: true do |t|
     t.integer  "user_id"

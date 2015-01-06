@@ -1,24 +1,15 @@
 Rails.application.routes.draw do
 
+  #root 'home#index'
 
-  get 'todos/show'
+  get 'items/complete' => 'items#complete'
+  resources :lists #do
+  resources :items, only: [:new, :create, :update, :edit, :complete] 
+  #end
+#    resources :item, only: [:create, :update] 
+  #get 'lists/show' => 'lists#show'
 
-  get 'todos/create'
-
-  get 'todos/update'
-
-  get 'todos/destroy'
-
-  get 'todos/new'
-get 'todos/show'
-
-#  get 'sessions/new'
-
-  root 'user#home' 
- resources :users
- resources :todos
-
-  devise_for :users, :controllers => {registrations: 'registrations'}#, sessions:  'sessions'}
+   devise_for :users, :controllers => {registrations: 'registrations'}
 #  devise_for :users, :controllers => {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
