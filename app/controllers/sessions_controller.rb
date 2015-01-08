@@ -1,4 +1,4 @@
-class SessionsController < Devuse::SessionsController 
+class SessionsController < Devise::SessionsController 
 
   #def new
  #   super
