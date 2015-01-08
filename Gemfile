@@ -12,7 +12,7 @@ gem "heroku"
 #group :development, :test do
 #  gem 'sqlite3'
 #end
-
+#
 gem 'pusher'
 gem 'devise'
 # Use SCSS for stylesheets
