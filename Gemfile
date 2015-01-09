@@ -42,6 +42,9 @@ gem 'faker',  '1.4.2'
 # Use for datatable rendering
 
 gem 'figaro'  #Face book auth
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
 
 #group :production do   #heroku added                         
    gem 'pg',             '0.17.1'              
