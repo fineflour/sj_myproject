@@ -4,12 +4,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
   #@user = User.new(params[:user])
-  respond_to do|format|
-     UserMailer.welcome_email(@user).deliver_later
-     format.html { redirect_to(@user, notice: 'User was successfully created.') }
-     format.json { render json: @user, status: :created, location: @user }
+  super
+    UserMailer.welcome_email(@user).deliver unless @user.invalid?
   end
-end
+  #respond_to do|format|
+  #   UserMailer.welcome_email(@user).deliver_later
+  #   format.html { redirect_to(@user, notice: 'User was successfully created.') }
+  #   format.json { render json: @user, status: :created, location: @user }
+  #end
 
   private
 
