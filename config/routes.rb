@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
 
-  #root 'home#index'
-
+  #get 'bookmark_category/destroy'
+  root 'home#index'
+  get 'bookmark_categories/index' => 'bookmark_categories#index'
+  get 'bookmark_categories/show' => 'bookmark_categories#show'
   get 'items/complete' => 'items#complete'
   resources :lists #do
   resources :items, only: [:new, :create, :update, :edit, :complete] 
+  resources :bookmark_categories
+  resources :bookmarks
   #end
 #    resources :item, only: [:create, :update] 
   #get 'lists/show' => 'lists#show'
 
-  # devise_for :users, :controllers => {registrations: 'registrations'}
-   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
+  devise_for :users, :controllers => {registrations: 'registrations'}
+ #  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
 #  devise_for :users, :controllers => {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

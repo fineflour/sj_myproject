@@ -3,7 +3,6 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all.order('id desc')
-
   end
 
 def show

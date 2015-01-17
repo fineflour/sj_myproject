@@ -1,0 +1,2 @@
+module BookmarkCategoryHelper
+end
