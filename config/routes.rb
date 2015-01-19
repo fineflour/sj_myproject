@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
+
   #get 'bookmark_category/destroy'
   root 'home#index'
-  get 'bookmark_categories/index' => 'bookmark_categories#index'
-  get 'bookmark_categories/show' => 'bookmark_categories#show'
+
+  get 'topics/index' => 'topics#index'
+  get 'topics/show' => 'topics#show'
+  get 'topics/new' => 'topics#new'
   get 'items/complete' => 'items#complete'
   resources :lists #do
   resources :items, only: [:new, :create, :update, :edit, :complete] 
-  resources :bookmark_categories
+  resources :topics
   resources :bookmarks
   #end
 #    resources :item, only: [:create, :update] 

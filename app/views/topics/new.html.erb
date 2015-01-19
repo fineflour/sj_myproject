@@ -1,0 +1,13 @@
+<h1>Create New Topic</h1>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<%= form_for(@topic) do |f|%>
+  <div class="field"> 
+       <%= f.label :title %>
+       <%= f.text_field :title %><br />
+       <%= f.hidden_field :user_id, :value => @user_id %>
+  </div>
+<%=f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>

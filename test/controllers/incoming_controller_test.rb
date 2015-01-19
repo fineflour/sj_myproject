@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BookmarkCategoryTest < ActiveSupport::TestCase
+class IncomingControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

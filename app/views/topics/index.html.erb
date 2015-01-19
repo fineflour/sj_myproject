@@ -1,0 +1,17 @@
+<h1>My Bookmarks</h1>
+
+
+<%= link_to "Create New Topic", topics_new_path, class: "btn btn-primary btn-xs active" %>
+</br>
+<table class="table">
+   <tr>
+   </tr>      
+    <% @topics.each do |topic| %>
+  <tr>
+  <td>
+    <%= hidden_field :id, :value => topic.id %>
+    <%= link_to topic.title, topics_show_path(:id => topic.id) %> 
+ </td>
+</tr>
+<% end %>
+</table>

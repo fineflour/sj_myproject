@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
  #        :omniauthable, :omniauth_providers => [:facebook]
   has_one :list
   has_many :bookmark
+  has_many :topics
   #after_create { UserMailer.welcome_email(self).deliver }
 end

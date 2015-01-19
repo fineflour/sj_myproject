@@ -3,7 +3,7 @@
       <nav>
         <ul class="nav navbar-nav pull-right">
         <% if current_user %>
-          <li><%= link_to "My Bookmarks", bookmark_categories_index_path %></li> 
+          <li><%= link_to "My Bookmarks", topics_index_path %></li> 
           <li><%= link_to "My list", lists_path %></li> 
           <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
         <% else %>
