@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :items, only: [:new, :create, :update, :edit, :complete] 
   resources :topics
   resources :bookmarks
+  post :incoming, to: 'incoming#create'
   #end
 #    resources :item, only: [:create, :update] 
   #get 'lists/show' => 'lists#show'
