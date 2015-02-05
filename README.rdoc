@@ -1,4 +1,6 @@
 == README
+1) API call
+curl http://localhost:3000/api/v1/users/1?access_token='946ebc53eca7504810b02c1987fe657b'
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

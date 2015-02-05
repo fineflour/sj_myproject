@@ -1,48 +1,23 @@
-Blocmarks::Application.routes.draw do
+Rails.application.routes.draw do
 
-  get 'users_admin/index' => 'users_admin#index'
-  get 'users_admin/show' => 'users_admin#show'
 
-  namespace :api, defaults: {format: 'json'} do
-    namespace :v1 do
-    #devise_for :users, :controllers => {registrations: 'registrations'} 
-    #  resources :users do
-        resources :lists, only: [:show, :edit]
-    #  end
-
-      resources :lists, only: [:index, :show] do
-          resources :items, only: [:create, :new]
-      end
-        resources :items, only: [:destroy]
-    end
-  end
   #get 'bookmark_category/destroy'
-
-  namespace :users do
-    get 'users/index' => 'users#index'
-    get 'users/show' => 'users#show'
-  end
-
-  resources :lists 
-
-  resources :items #, only: [:new, :create, :update, :edit, :complete] 
   root 'home#index'
-  
-  resources :topics 
+
   get 'topics/index' => 'topics#index'
   get 'topics/show' => 'topics#show'
   get 'topics/new' => 'topics#new'
   get 'items/complete' => 'items#complete'
-  
-  devise_for :users, :controllers => {registrations: 'registrations'} do
+  resources :lists #do
+  resources :items, only: [:new, :create, :update, :edit, :complete] 
+  resources :topics
   resources :bookmarks
   post :incoming, to: 'incoming#create'
-  end
-end
-
+  #end
 #    resources :item, only: [:create, :update] 
   #get 'lists/show' => 'lists#show'
 
+  devise_for :users, :controllers => {registrations: 'registrations'}
  #  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
 #  devise_for :users, :controllers => {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
@@ -99,3 +74,4 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+end

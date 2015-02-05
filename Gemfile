@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.2'
 gem 'bootstrap-sass', '3.2.0.0'
+gem 'bootstrap'
 
 # Use sqlite3 as the database for Active Record
 
@@ -37,8 +38,18 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-gem 'pry'
-gem 'faker',  '1.4.2'
+group :development, :test do
+  gem 'pry'
+  gem 'binding_of_caller'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'  
+  gem 'rspec'
+end
+
+#gem 'faker',  '1.4.2'
 # Use for datatable rendering
 
 #gem 'figaro'  #Face book auth
@@ -53,8 +64,8 @@ gem 'faker',  '1.4.2'
 #end
 
 group :assets do
-    gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-      gem 'jquery-ui-rails'
+   gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+   gem 'jquery-ui-rails'
 end
 
 gem 'will_paginate'
