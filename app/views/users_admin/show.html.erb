@@ -1,2 +1,8 @@
-<h1>UsersAdmin#show</h1>
-<p>Find me in app/views/users_admin/show.html.erb</p>
+<% provide(:title, 'Admin | User Profile') %>
+<h1>Admin | User Profile</h1>
+
+<div class="row">
+   <p>Name : <%= link_to @user.name, users_admin_edit_path(:id => @user.id) %></p>
+   <p><%= @user.email %></p>
+</div>
+

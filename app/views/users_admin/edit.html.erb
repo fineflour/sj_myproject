@@ -1,2 +1,10 @@
-<h1>UsersAdmin#edit</h1>
-<p>Find me in app/views/users_admin/edit.html.erb</p>
+<h1>Admin | User Edit</h1>
+
+<%= form_for @user, url: users_admin_path(@user), html: { method: :get } do |f|%>
+    <%= f.text_field :name %>
+    <%= f.text_field :email %>
+    <%= f.hidden_field :id, :value => @user.id %>
+    <%= f.submit "Update", class: "btn btn-primary" %>
+<% end %>
+
+

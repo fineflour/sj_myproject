@@ -1,7 +1,10 @@
 Blocmarks::Application.routes.draw do
 
-  get 'users_admin/index' => 'users_admin#index'
-  get 'users_admin/show' => 'users_admin#show'
+ # get 'users_admin/' => 'users_admin#index'
+ # get 'users_admin/show/:id' => 'users_admin#show'
+ # get 'users_admin/edit/:id' => 'users_admin#edit'
+
+ resources :users_admin
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -17,12 +20,6 @@ Blocmarks::Application.routes.draw do
     end
   end
   #get 'bookmark_category/destroy'
-
-  namespace :users do
-    get 'users/index' => 'users#index'
-    get 'users/show' => 'users#show'
-  end
-
   resources :lists 
 
   resources :items #, only: [:new, :create, :update, :edit, :complete] 
