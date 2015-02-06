@@ -32,9 +32,10 @@ Blocmarks::Application.routes.draw do
   get 'items/complete' => 'items#complete'
   
   devise_for :users, :controllers => {registrations: 'registrations'} do
-  resources :bookmarks
-  post :incoming, to: 'incoming#create'
+    resources :bookmarks
+    post :incoming, to: 'incoming#create'
   end
+  
 end
 
 #    resources :item, only: [:create, :update] 

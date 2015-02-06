@@ -18,8 +18,8 @@ class UserMailer < ActionMailer::Base
       body: email.body
     )
  
-    if email.has_attachments?
-      email.attachments.each do |attachment|
+      if email.has_attachments?
+        email.attachments.each do |attachment|
         page.attachments.create({
           file: attachment,
           description: email.subject
@@ -42,7 +42,7 @@ private
 
 def set_delivery_options
   if @business && @business.has_stmp_setting?
-    mail.delivery_method.settings.merge!(@business.smtp_settings?
+    mail.delivery_method.settings.merge!(@business.smtp_settings?)
   end
 end
 
@@ -56,5 +56,6 @@ end
     if @business
       headers["X-SMTPAPI-CATEGORY"] = @business.code
     end
+ end
  end
 end

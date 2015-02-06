@@ -13,7 +13,14 @@ class UsersAdminController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    #redirect_to users_admin_show_path(:id => params[:id]) 
+    flash[:notice] = "User successfully updated"
+    redirect_to users_admin_path(:id => params[:id]) 
+
+    /#if @message.save
+     flash.now[:notice] = 'Message sent!'
+    else
+     flash.now[:alert] = 'Error while sending message!'
+    end#/
   end
 
   def edit

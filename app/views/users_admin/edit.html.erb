@@ -1,6 +1,6 @@
 <h1>Admin | User Edit</h1>
 
-<%= form_for @user, url: users_admin_path(@user), html: { method: :get } do |f|%>
+<%= form_for @user, url: users_admin_path(@user) do |f|%>
     <%= f.text_field :name %>
     <%= f.text_field :email %>
     <%= f.hidden_field :id, :value => @user.id %>
