@@ -1,0 +1,21 @@
+<% provide(:title, 'My Todo List') %>
+<h1>User Profile</h1>
+
+  <table class="table table-striped table-bordered">
+     <tr>
+       <td align="center"><strong>Name</strong></td>
+       <td align="center"><strong><%= @user.name %></strong></td>
+     </tr>
+
+    <tr>
+       <td align="center"><strong>Email</strong></td>
+       <td align="center"><strong><%= @user.email %></strong></td>
+   </tr>
+
+    <tr>
+      <td align="center"><strong>Address1</strong></td>
+      <td align="center"><strong></strong></td>
+    </tr>
+  </table>
+  Email : <%= @user.email %>
+  Address :

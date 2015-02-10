@@ -28,3 +28,16 @@
                   updated_at: Time.zone.now)
 end
 
+address_list = [
+ {name: "Alabama",  abbname:   "AL"},
+ {name: "Alaska",  abbname:   "AK"}
+
+]
+
+while !address_list.empty? do
+  begin
+    Address.create(address_list)
+  #rescue
+    #users_list = users_list.drop(1) #removing the first if the id already exist.
+  end
+end

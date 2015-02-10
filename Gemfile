@@ -51,7 +51,7 @@ group :test do
   gem 'rspec'
 end
 
-#gem 'faker',  '1.4.2'
+gem 'faker',  '1.4.2'
 # Use for datatable rendering
 
 #gem 'figaro'  #Face book auth

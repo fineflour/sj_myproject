@@ -1,5 +1,8 @@
 Blocmarks::Application.routes.draw do
 
+#  get 'users/show'
+
+ # get 'addresses/destroy'
  # get 'users_admin/' => 'users_admin#index'
  # get 'users_admin/show/:id' => 'users_admin#show'
  # get 'users_admin/edit/:id' => 'users_admin#edit'
@@ -30,6 +33,10 @@ Blocmarks::Application.routes.draw do
   get 'topics/show' => 'topics#show'
   get 'topics/new' => 'topics#new'
   get 'items/complete' => 'items#complete'
+
+  resources :users, only: [:show] do
+    resources :addresses, only: [:index, :new, :edit, :create, :destroy, :show, :update]
+  end
   
   devise_for :users, :controllers => {registrations: 'registrations'} do
     resources :bookmarks

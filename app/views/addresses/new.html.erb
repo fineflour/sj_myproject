@@ -1,0 +1,27 @@
+<% provide(:title, 'Add new address') %>
+<h1>Add new address</h1>
+
+<div class="row">
+       <div class="col-md-6 col-md-offset-3">
+         <%= form_for(@address) do |f| %>
+
+           <%= f.hidden_field :user_id, :value => @user_id%><br />
+          <div class="field"> 
+            <%= f.label :address1%>
+            <%= f.text_field :address1 %><br />
+          </div>
+
+           <div class="field"> 
+            <%= f.label :city %>
+            <%= f.text_field :city %><br />
+          </div>
+
+          </div>
+
+            <%= f.submit "Save", class: "btn btn-primary" %>
+
+         <% end %>
+
+
+</div>
+

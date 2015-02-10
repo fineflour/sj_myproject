@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   has_many :bookmark
   has_many :topics
   has_many :apk_key
+  has_many :address
   #after_create { UserMailer.welcome_email(self).deliver }
 end

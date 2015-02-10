@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204234227) do
+ActiveRecord::Schema.define(version: 20150209235820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "add_cityto_addresses", force: true do |t|
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "addresses", force: true do |t|
+    t.integer  "user_id"
+    t.string   "address1"
+    t.string   "address2"
+    t.integer  "state_id"
+    t.string   "zipcode",    limit: 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "city"
+  end
+
+  add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
@@ -55,6 +75,13 @@ ActiveRecord::Schema.define(version: 20150204234227) do
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
+
+  create_table "states", force: true do |t|
+    t.string   "name"
+    t.string   "abbname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "todos", force: true do |t|
     t.integer  "user_id"
