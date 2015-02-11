@@ -12,13 +12,19 @@
   <tr>
   <td>
     <%= hidden_field :id, :value => address.id %>
-    <%= link_to address.address1, user_address_path(:id => address.id) %> 
+    <%= address.address1 %> 
+    <%= address.address2 %> 
+    <%= address.city %> 
+    <%= address.state_id %> 
+    <%= address.zipcode %> 
+  </td>
+  <td>
+    <%= link_to "Edit", edit_user_address_path(:id => address.id), class: "btn btn-default btn-xs active" %> 
   </td>
   <td>
     <%= address.created_at %>
     </td>
     <td>
-    <%= link_to "See Todos", user_address_path(:id => address.id), class: "btn btn-default btn-xs active" %> 
     <!--%= link_to "Edit", edit_user_address_path(address), method: "get", class: "btn btn-default btn-xs active"  %-->
     <!--%= link_to "Delete", user_address_path(address), method: :delete, data: {confirm: "You sure?"}, class: "btn btn-warning btn-xs active" %-->
  </td>

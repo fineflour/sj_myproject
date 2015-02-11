@@ -1,28 +1,38 @@
 <% provide(:title, 'My addresses') %>
 <h1>My addresses</h1>
 
-<%= link_to "Create New List", new_list_path, class: "btn btn-primary btn-xs active" %>
-<table class="table table-striped table-bordered">
-   <tr>
-   <td align="center"><strong>Description</strong></td>                                                                         
-   <td align="center"><strong>Created Date</strong></td>                                                                           
-   <td align="center"><strong>Complete</strong></td>                                                                            
-   </tr>      
-    <% @users.addresses.each do |address| %>
-  <tr>
-  <td>
-    <%= hidden_field :id, :value => address.id %>
-    <%= link_to address.address1, address_path(:id => address.id) %> 
-  </td>
-  <td>
-    <%= list.created_at %>
-    </td>
-    <td>
-    <%= link_to "See Todos", list_path(:id => address.id), class: "btn btn-default btn-xs active" %> 
-    <%= link_to "Edit", edit_list_path(address), method: "get", class: "btn btn-default btn-xs active"  %>
-    <%= link_to "Delete", list_path(address), method: :delete, data: {confirm: "You sure?"}, class: "btn btn-warning btn-xs active" %>
- </td>
-</tr>
-<% end %>
-</table>
+
+<%= link_to "Add new address", new_user_address_path, class: "btn btn-primary btn-xs active" %>
+<%= link_to "Edit", edit_user_address_path(:id => @address.id), class: "btn btn-default btn-xs active" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">Address1 : </div>
+    <div class="col-md-6"><%= @address.address1 %></div>
+ </div>
+
+  <div class="row">                                                                                                                 
+    <div class="col-md-6">Address2 : </div>                                                                                         
+    <div class="col-md-6"><%= @address.address2 %></div>                                                                            
+  </div>  
+
+  <div class="row">                                                                                                                 
+    <div class="col-md-6">City : </div>
+    <div class="col-md-6"><%= @address.city %></div>                                                                            
+  </div>  
+
+  <div class="row">                                                                                                                 
+    <div class="col-md-6">State/Province : </div>                                                                                   
+    <div class="col-md-6"><%= @address.state_id %></div>                                                                            
+  </div>  
+
+  <div class="row">                                                                                                                 
+    <div class="col-md-6">Zipcode : </div>                                                                                         
+    <div class="col-md-6"><%= @address.zipcode %></div>                                                                            
+  </div>  
+</div>
+
+    <!--%= link_to "See Todos", user_addresses_path(:id => @address.id), class: "btn btn-default btn-xs active" %> 
+    <= link_to "Edit", user_addresses_path(@address), method: "get", class: "btn btn-default btn-xs active"  %>
+    <= link_to "Delete", user_addresses_path(@address), method: :delete, data: {confirm: "You sure?"}, class: "btn btn-warning btn-xs active" %-->
+
 
