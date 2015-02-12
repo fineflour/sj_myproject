@@ -4,33 +4,35 @@
 
 <%= link_to "Add new address", new_user_address_path, class: "btn btn-primary btn-xs active" %>
 <%= link_to "Edit", edit_user_address_path(:id => @address.id), class: "btn btn-default btn-xs active" %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">Address1 : </div>
-    <div class="col-md-6"><%= @address.address1 %></div>
- </div>
 
-  <div class="row">                                                                                                                 
-    <div class="col-md-6">Address2 : </div>                                                                                         
-    <div class="col-md-6"><%= @address.address2 %></div>                                                                            
-  </div>  
+<div class="table-responsive">
+<table class="table">
+  <tr>
+    <td>Address1 : </td>
+    <td><%= @address.address1 %></td>
+ </tr>
 
-  <div class="row">                                                                                                                 
-    <div class="col-md-6">City : </div>
-    <div class="col-md-6"><%= @address.city %></div>                                                                            
-  </div>  
+  <tr>                                                                                                                 
+    <td>Address2 : </td>                                                                                         
+    <td><%= @address.address2 %></td>                                                                            
+  </td>  
 
-  <div class="row">                                                                                                                 
-    <div class="col-md-6">State/Province : </div>                                                                                   
-    <div class="col-md-6"><%= @address.state_id %></div>                                                                            
-  </div>  
+  <tr>                                                                                                                 
+    <td>City : </td>
+    <td><%= @address.city %></td>                                                                            
+  </tr>  
 
-  <div class="row">                                                                                                                 
-    <div class="col-md-6">Zipcode : </div>                                                                                         
-    <div class="col-md-6"><%= @address.zipcode %></div>                                                                            
-  </div>  
+  <tr>                                                                                                                 
+    <td>State/Province : </td>                                                                                   
+    <td><%= @state.name %></td>                                                                            
+  </tr>  
+
+  <tr>                                                                                                                 
+    <td>Zipcode : </td>                                                                                         
+    <td><%= @address.zipcode %></td>                                                                            
+  </tr>  
+</table>
 </div>
-
     <!--%= link_to "See Todos", user_addresses_path(:id => @address.id), class: "btn btn-default btn-xs active" %> 
     <= link_to "Edit", user_addresses_path(@address), method: "get", class: "btn btn-default btn-xs active"  %>
     <= link_to "Delete", user_addresses_path(@address), method: :delete, data: {confirm: "You sure?"}, class: "btn btn-warning btn-xs active" %-->

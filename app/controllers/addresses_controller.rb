@@ -35,6 +35,7 @@ class AddressesController < ApplicationController
   def show
     user = User.find(params[:user_id])
     @address = user.address.find(params[:id])
+    @state = State.find(@address.state_id) 
 
     respond_to do |format|
       format.html # show.html.erb
@@ -45,6 +46,7 @@ class AddressesController < ApplicationController
   def new
     user=User.find(params[:user_id])
     @address = user.address.build
+    @state = State.all.order('abbname asc') 
 
     respond_to do |format|
       format.html
@@ -55,6 +57,7 @@ class AddressesController < ApplicationController
   def edit
     user = User.find(params[:user_id])
     @address = user.address.find(params[:id])
+    @states = State.all.order('abbname asc')
   end
 
   def update

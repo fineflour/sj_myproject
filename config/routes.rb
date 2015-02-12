@@ -35,7 +35,9 @@ Blocmarks::Application.routes.draw do
   get 'items/complete' => 'items#complete'
 
   resources :users, only: [:show] do
-    resources :addresses, only: [:index, :new, :edit, :create, :destroy, :show, :update]
+    resources :addresses, only: [:index, :new, :edit, :create, :destroy, :show, :update] do
+      resources :states
+    end
   end
   
   devise_for :users, :controllers => {registrations: 'registrations'} do

@@ -4,14 +4,13 @@
 <%= link_to "Add New Address", new_user_address_path, class: "btn btn-primary btn-xs active" %>
 <table class="table table-striped table-bordered">
    <tr>
-   <td align="center"><strong>Description</strong></td>                                                                         
+   <td align="center"><strong>Address</strong></td>                                                                         
    <td align="center"><strong>Created Date</strong></td>                                                                           
-   <td align="center"><strong>Complete</strong></td>                                                                            
+   <td align="center"><strong>Action</strong></td>                                                                            
    </tr>      
     <% @addresses.each do |address| %>
   <tr>
   <td>
-    <%= hidden_field :id, :value => address.id %>
     <%= address.address1 %> 
     <%= address.address2 %> 
     <%= address.city %> 
@@ -19,15 +18,14 @@
     <%= address.zipcode %> 
   </td>
   <td>
-    <%= link_to "Edit", edit_user_address_path(:id => address.id), class: "btn btn-default btn-xs active" %> 
+    <%= address.created_at %>
   </td>
   <td>
-    <%= address.created_at %>
+    <%= link_to "Edit", edit_user_address_path(:id => address.id), class: "btn btn-default btn-xs active" %> 
+    <%= link_to "Destory", user_address_path(:id => address.id), method: :delete, class: "btn btn-default btn-xs active" %> 
     </td>
-    <td>
     <!--%= link_to "Edit", edit_user_address_path(address), method: "get", class: "btn btn-default btn-xs active"  %-->
     <!--%= link_to "Delete", user_address_path(address), method: :delete, data: {confirm: "You sure?"}, class: "btn btn-warning btn-xs active" %-->
- </td>
 </tr>
 <% end %>
 </table>
