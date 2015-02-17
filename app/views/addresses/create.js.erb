@@ -1,0 +1,5 @@
+<% if @address.valid? %>
+  $('.js-addresses').prefend("<%= escape_javascript(render(@address)) %>");
+<% else %>
+  $('.new-address').html("<%= escape_javascript(render partial: 'addresses/form', local: { user: @user, address: @address }) %>");
+<% end %>

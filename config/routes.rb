@@ -42,6 +42,7 @@ Blocmarks::Application.routes.draw do
   
   devise_for :users, :controllers => {registrations: 'registrations'} do
     resources :bookmarks
+    resources :addresses
     post :incoming, to: 'incoming#create'
   end
   

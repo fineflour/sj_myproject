@@ -12,16 +12,14 @@
        <td align="center"><strong><%= @user.email %></strong></td>
    </tr>
 
+    <tr>
+      <td align="center" colspan="2"><strong>My Address</strong></td>
+    </tr>
    <tr>
     <td colspan="2" align=center>
-      <h2> My Addresses </h2>
-      <div class='js-addresses'>
-      <%= render partial: 'addresses/address', collection: @addresses %>
-      </div>
-
-      <div class='new-address'>
-      <%= render 'addresses/form' %>
-      </div>
+       <div class="field"><%= @address.address1 %> <%= @address.address2 %><br />
+        <%= @address.city %> <%= @state.abbname %> <%= @address.zipcode %>  
+       </div> 
     </td>
   </tr>
 

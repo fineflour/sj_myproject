@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
  #        :omniauthable, :omniauth_providers => [:facebook]
-  has_one :list
-  has_many :bookmark
+  has_many :lists
+  has_many :bookmarks
   has_many :topics
-  has_many :apk_key
-  has_many :address
+  has_many :apk_keyes
+  has_many :addresses
   #after_create { UserMailer.welcome_email(self).deliver }
 end

@@ -4,8 +4,8 @@ class UsersController < ApplicationController
     if current_user
       @user = User.find(params[:id])
       #@address = Address.find(1)
-      @address = @user.address.where(user_id: params[:id]).where(status_id: 1).first
-      @state = State.find(@address.state_id)
+      @addresses = @user.addresses.where(user_id: params[:id]).all #.where('status_id= 1').first
+      #@state = State.find(@address.state_id)
 #.where(user_id: params[:id]).first
 #(cast(user_id as integer) => current_user.id).where("status = 1").order('id desc').first
 

@@ -7,16 +7,21 @@ class AddressesController < ApplicationController
   end
 
   def create
-    user = User.find(params[:user_id])
-    @address = user.address.create(address_params)
+    @user = User.find(params[:user_id])
+    @addresses = @user.addresses
+    @address = current_user.addresses.build(address_params)
+    @address.user = @user
+      @new_address = Address.new
+
+    authorize @address
 
       respond_to do |format|
           if @address.save
               format.html { redirect_to([@address.user, @address], flash[:success] => "New Address has been added!")}
-              format.xml  { render :xml => @comment, :status => :created, :location => [@comment.post, @comment] }
+              format.xml  { render :xml => @address, :status => :created, :location => [@address.user, @address] }
          else
               format.html { render :action => "new" }
-              format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+              format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
          end
       end
   end
