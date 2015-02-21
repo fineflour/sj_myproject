@@ -7,45 +7,14 @@ Blocmarks::Application.routes.draw do
  # get 'users_admin/show/:id' => 'users_admin#show'
  # get 'users_admin/edit/:id' => 'users_admin#edit'
 
- resources :users_admin
+ #resources :users_admin
 
-  namespace :api, defaults: {format: 'json'} do
-    namespace :v1 do
-    #devise_for :users, :controllers => {registrations: 'registrations'} 
-    #  resources :users do
-        resources :lists, only: [:show, :edit]
-    #  end
-
-      resources :lists, only: [:index, :show] do
-          resources :items, only: [:create, :new]
-      end
-        resources :items, only: [:destroy]
+  devise_for :users, :controllers => {registrations: 'registrations'} 
+    resources :topics do
+      resources :posts#, except: [:index]
     end
-  end
-  #get 'bookmark_category/destroy'
-  resources :lists 
-
-  resources :items #, only: [:new, :create, :update, :edit, :complete] 
+  
   root 'home#index'
-  
-  resources :topics 
-  get 'topics/index' => 'topics#index'
-  get 'topics/show' => 'topics#show'
-  get 'topics/new' => 'topics#new'
-  get 'items/complete' => 'items#complete'
-
-  resources :users, only: [:show] do
-    resources :addresses, only: [:index, :new, :edit, :create, :destroy, :show, :update] do
-      resources :states
-    end
-  end
-  
-  devise_for :users, :controllers => {registrations: 'registrations'} do
-    resources :bookmarks
-    resources :addresses
-    post :incoming, to: 'incoming#create'
-  end
-  
 end
 
 #    resources :item, only: [:create, :update] 

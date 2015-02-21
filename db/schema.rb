@@ -11,31 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213223641) do
+ActiveRecord::Schema.define(version: 20150219205334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "add_cityto_addresses", force: true do |t|
-    t.string   "city"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "addresses", force: true do |t|
-    t.integer  "user_id"
-    t.string   "address1"
-    t.string   "address2"
-    t.integer  "state_id"
-    t.string   "zipcode",    limit: 10
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "city"
-    t.integer  "status_id",             default: 0
-  end
-
-  add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
-  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
@@ -49,58 +28,35 @@ ActiveRecord::Schema.define(version: 20150213223641) do
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
 
-  create_table "bookmarks", force: true do |t|
-    t.string   "url"
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+
+  create_table "posts", force: true do |t|
+    t.text     "body"
+    t.string   "image"
+    t.float    "rank"
+    t.string   "title"
     t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  add_index "bookmarks", ["topic_id"], name: "index_bookmarks_on_topic_id", using: :btree
-
-  create_table "items", force: true do |t|
-    t.string   "name"
-    t.integer  "list_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "status_id",  default: 0, null: false
-  end
-
-  add_index "items", ["list_id"], name: "index_items_on_list_id", using: :btree
-
-  create_table "lists", force: true do |t|
-    t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
-  add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
-
-  create_table "states", force: true do |t|
-    t.string   "name"
-    t.string   "abbname"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "todos", force: true do |t|
-    t.integer  "user_id"
-    t.string   "description"
-    t.integer  "status_id"
-    t.datetime "created_at"
-    t.datetime "status_updated_at"
-    t.datetime "updated_at"
-  end
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "topics", force: true do |t|
-    t.string   "title"
-    t.integer  "user_id"
+    t.string   "name"
+    t.boolean  "public",      default: true
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -120,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150213223641) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

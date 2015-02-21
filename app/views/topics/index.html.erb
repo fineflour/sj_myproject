@@ -1,17 +1,23 @@
-<h1>My Bookmarks</h1>
+<h1>Topics</h1>
 
-
-<%= link_to "Create New Topic", topics_new_path, class: "btn btn-primary btn-xs active" %>
-</br>
-<table class="table">
-   <tr>
-   </tr>      
+<div class="row">
+  <div class="col-md-8">
     <% @topics.each do |topic| %>
-  <tr>
-  <td>
-    <%= hidden_field :id, :value => topic.id %>
-    <%= link_to topic.title, topics_show_path(:id => topic.id) %> 
- </td>
-</tr>
-<% end %>
-</table>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to topic.name, topic %>
+          </h4>
+          <small>
+            <%= topic.description %>
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <% if policy(Topic.new).create? %>
+      <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

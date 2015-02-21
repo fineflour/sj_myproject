@@ -1,43 +1,73 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+ require 'faker'
+ 
+5.times do
+   user = User.new(
+     name:     Faker::Name.name,
+     email:    Faker::Internet.email,
+     password: Faker::Lorem.characters(10)
+   )
+   user.save!
+ end
+ users = User.all
 
-#List.create!(title:  "Do to Title}",
-#             user_id:     2,
-#            )
 
-#10.times do |n|
-#   title  = Faker::Name.title
-#   user_id =2 
-#   List.create!(title:  title,
-#                user_id: user_id,
-#                created_at: true,
-#                updated_at: Time.zone.now)
-#end
-#
-10.times do |n|                                                                                                                     
-    name  = Faker::Name.name                                                                                                       
-    list_id = n+1                                                                                                                      
-     Item.create!(name: name,                                                                                                      
-                  list_id: list_id,                                                                                                   
-                  created_at: true,                                                                                                   
-                  updated_at: Time.zone.now)
-end
+ # Create Topics
+ 15.times do
+   Topic.create!(
+     name:         Faker::Lorem.sentence,
+     description:  Faker::Lorem.paragraph
+   )
+ end
+ topics = Topic.all
 
-address_list = [
- {name: "Alabama",  abbname:   "AL"},
- {name: "Alaska",  abbname:   "AK"}
 
-]
+ # Create Posts
+ 50.times do
+   Post.create!(
+     user:   users.sample,
+     topic:  topics.sample,
+     title:  Faker::Lorem.sentence,
+     body:   Faker::Lorem.paragraph
+   )
+ end
+ posts = Post.all
+ 
+ # Create Comments
+ 100.times do
+   Comment.create!(
+    # user: users.sample,   # we have not yet associated Users with Comments
+     post: posts.sample,
+     body: Faker::Lorem.paragraph
+   )
+ end
+ 
+ 
+  admin = User.new(
+   name:     'fineflour',
+   email:    'soojin.cho@bfa.org',
+   password: "ConnectBfA",
+   role:     'admin'
+ )
+ admin.save!
+ 
+ # Create a moderator
+ moderator = User.new(
+   name:     'Moderator User',
+   email:    'moderator@example.com',
+   password: "ConnectBfA",
+   role:     'moderator'
+ )
+ moderator.save!
+ 
+ # Create a member
+ member = User.new(
+   name:     'Member User',
+   email:    'member@example.com',
+   password: "ConnectBfA",
+ )
+ member.save!
 
-while !address_list.empty? do
-  begin
-    Address.create(address_list)
-  #rescue
-    #users_list = users_list.drop(1) #removing the first if the id already exist.
-  end
-end
+ puts "Seed finished"
+ puts "#{User.count} users created"
+ puts "#{Post.count} posts created"
+ puts "#{Comment.count} comments created"

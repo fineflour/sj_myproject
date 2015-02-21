@@ -1,8 +1,9 @@
 class CreateTopics < ActiveRecord::Migration
   def change
     create_table :topics do |t|
-      t.string :title
-      t.references :user, index: true
+      t.string :name
+      t.boolean :public, default: true
+      t.text :description
 
       t.timestamps
     end

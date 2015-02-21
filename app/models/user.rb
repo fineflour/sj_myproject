@@ -4,10 +4,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
  #        :omniauthable, :omniauth_providers => [:facebook]
-  has_many :lists
-  has_many :bookmarks
-  has_many :topics
-  has_many :apk_keyes
-  has_many :addresses
+  has_many :posts
+
+  def admin?
+    role == 'admin'
+  end
+
+  def moderator?
+    role == 'moderator'
+  end
   #after_create { UserMailer.welcome_email(self).deliver }
 end
