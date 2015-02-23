@@ -9,7 +9,9 @@ Blocmarks::Application.routes.draw do
 
  #resources :users_admin
 
-  devise_for :users, :controllers => {registrations: 'registrations'} 
+ #devise_for :users, :controllers => {registrations: 'registrations'} 
+  devise_for :users
+    resources :users, only: [:update] 
     resources :topics do
       resources :posts#, except: [:index]
     end
