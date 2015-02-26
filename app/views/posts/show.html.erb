@@ -1,7 +1,22 @@
 <h1><%= @post.title %></h1>
 
   <% if policy(@post).edit? %>
-   <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' %>
+   <%= link_to "Edit post", edit_topic_post_path, class: 'btn btn-success' %>
   <% end %>
 
 <p><%= markdown_to_html @post.body %></p>
+<div class="row">
+  <div class="col-md-4">
+   <%= link_to "New Comment", new_topic_post_comment_path(@topic, @post), class: 'btn btn-success' %>
+  </div>
+</div>
+
+
+<div class="row">
+<div class="col-md-8">
+
+  <%= render partial: "comments/comment", collection: @comments %>
+   <% if policy(Comment.new).create? %>
+   <% end %>
+ </div>
+</div>

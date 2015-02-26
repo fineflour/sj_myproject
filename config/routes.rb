@@ -1,5 +1,6 @@
 Blocmarks::Application.routes.draw do
 
+
 #  get 'users/show'
 
  # get 'addresses/destroy'
@@ -13,7 +14,9 @@ Blocmarks::Application.routes.draw do
   devise_for :users
     resources :users, only: [:update] 
     resources :topics do
-      resources :posts#, except: [:index]
+      resources :posts, except: [:index] do
+        resources :comments
+      end
     end
   
   root 'home#index'

@@ -6,20 +6,22 @@ class PostsController < ApplicationController
   end
 
   def show
+    @topic= Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
+    #post = Post.find(params[:id])
+    @comments = @post.comments
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new
+    @post = @topic.posts.new
       authorize @post
   end
 
   def create
-#     @post = Post.new(params.require(:post).permit(:title, :body))
       @topic = Topic.find(params[:topic_id])
       @post = current_user.posts.build(post_params)
-        authorize @post
+  #      authorize @post
 
      if @post.save
        flash[:notice] = "Post was saved."
@@ -32,14 +34,14 @@ class PostsController < ApplicationController
 
   def edit
     @topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:id])
+    @post = @topic.posts.find(params[:id])
       authorize @post
   end
 
    def update
      @topic = Topic.find(params[:topic_id])
-     @post = Post.find(params[:id])
-      authorize @post
+     @post = @topic.posts.find(params[:id])
+  #    authorize @post
      if @post.update_attributes(post_params)
        flash[:notice] = "Post was updated."
        redirect_to @post
