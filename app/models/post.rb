@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :user
   belongs_to :topic
 
@@ -9,6 +9,5 @@ class Post < ActiveRecord::Base
   validate :body, length: {minimum: 20}, presence: true
   #validates :topic_id, presence: true
   validates :user, presence: true
-  validates :post, presence: true
 
 end
