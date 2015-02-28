@@ -1,8 +1,5 @@
 Blocmarks::Application.routes.draw do
 
-
-#  get 'users/show'
-
  # get 'addresses/destroy'
  # get 'users_admin/' => 'users_admin#index'
  # get 'users_admin/show/:id' => 'users_admin#show'
@@ -13,11 +10,15 @@ Blocmarks::Application.routes.draw do
  #devise_for :users, :controllers => {registrations: 'registrations'} 
   devise_for :users
     resources :users, only: [:update] 
-    resources :topics do
+    resources :topics  do
       resources :posts, except: [:index] do
-        resources :comments
+        resources :comments, only: [:create, :destroy]
+      
+        post '/up-vote' => 'votes#up_vote', as: :up_vote
+        post '/down-vote' => 'votes#down_vote', as: :down_vote
       end
-    end
+  end
+
   
   root 'home#index'
 end

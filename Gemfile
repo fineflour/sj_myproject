@@ -47,12 +47,12 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'pry'
+  gem 'rspec-rails', '~> 3.0'  
   gem 'binding_of_caller'
 end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'rspec-rails'  
   gem 'rspec'
 end
 
