@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @topic= Topic.find(params[:topic_id])
-    @post = Post.find(params[:id])
+    @post = @topic.posts.find(params[:id])
     #post = Post.find(params[:id])
     @comments = @post.comments
   end
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
         authorize @post
 
      if @post.save 
+       @post.create_vote
        flash[:notice] = "Post was saved."
        redirect_to topic_path(@topic.id)
      else
@@ -52,7 +53,7 @@ class PostsController < ApplicationController
      end
    end
 
-def destroy
+  def destroy
      @topic = Topic.find(params[:topic_id])
      @post = Post.find(params[:id])
      title = @post.title
@@ -67,9 +68,15 @@ def destroy
      end
    end
 
+   def update_rank
+     age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
+     new_rank = points + age_in_days
+ 
+     update_attribute(:rank, new_rank)
+   end
+
 private
   def post_params
    params.require(:post).permit(:title, :body) 
   end
-
 end

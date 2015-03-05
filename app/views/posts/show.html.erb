@@ -22,12 +22,12 @@
        <%= pluralize(@post.down_votes, 'down vote') %>
      </small>
    </div>
-
+   <!--= render partial: 'favorites/favorite', locals: { post: @post } %-->
   </div>
 
   <div class="row">
     <div class="col-md-2">
-      <%= render partial: 'votes/voter', locals: { post: @post } %>
+      <%= render partial: 'votes/voter', locals: { topic: @topic, post: @post } %>
     </div>
     <div class="col-md-10">
     <p><%= markdown_to_html @post.body %></p>
@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-4">
       <% if policy(@post).create? %>
-         <%= link_to "New Comment", new_topic_post_comment_path(@topic, @post), class: 'btn btn-success' %>
+         <%= link_to "New Comment", new_post_comment_path(@topic, @post), class: 'btn btn-success' %>
       <% end %>
     </div>
  </div>

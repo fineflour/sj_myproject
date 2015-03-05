@@ -3,13 +3,15 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   has_many :votes
+  has_many :favorites, dependent: :destroy 
 
-  default_scope { order('created_at DESC') }
+  default_scope { order('rank DESC') }
 
   validates :title, length: {minimum: 5}, presence: true
   validate :body, length: {minimum: 20}, presence: true
-  #validates :topic_id, presence: true
-  #validates :user, presence: true
+  validates :topic, presence: true
+  validates :user, presence: true
+  
 
   def up_votes
     votes.where(value: 1).count
@@ -21,7 +23,10 @@ class Post < ActiveRecord::Base
 
   def points
     votes.sum(:value)
+  end
 
+  def create_vote
+    user.votes.create(value: 1, post: self)
   end
 
 end
