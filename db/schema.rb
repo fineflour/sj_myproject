@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 20150303190844) do
     t.datetime "updated_at"
   end
 
+  add_index "favorites", ["post_id"], name: "index_favorites_on_post_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
   create_table "posts", force: true do |t|
     t.text     "body"
     t.float    "rank"

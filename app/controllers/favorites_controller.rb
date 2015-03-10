@@ -6,23 +6,26 @@ class FavoritesController < ApplicationController
       authorize favorite
  
      if favorite.save
-       # Add code to generate a success flash and redirect to @post
-       # Remember the path shortcut: [@post.topic, @post]
+        flash[:notice] = "Favorited post"
+        redirect_to [@post.topic, @post]
      else
-       # Add code to generate a failure flash and redirect to @post
+        flash[:error] = "Unable to add favorite. Please try again."
+        redirect_to [@post.topic, @post]
      end
   end
 
 
   def destroy
-   # Get the post from the params
-   # Find the current user's favorite with the ID in the params
-    authorize favorite 
+    @post = Post.find(params[:post_id])
+    favorite = current_user.favorites.find(params[:id])
+    authorize favoirte
+
    if favorite.destroy
-     # Flash success and redirect to @post
+      flash[:notice] = "Remove favorite."
+      redirect_to [@post.topic, @post]
    else
-     # Flash error and redirect to @post
+      flash[:error] = "Unable to remove favorite. Please try again."
+      redirect_to [@post.topic, @post]
    end
  end
-
 end

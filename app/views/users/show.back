@@ -28,4 +28,4 @@
       <td align="center"><strong></strong></td>
   </tr>
   </table>
-
+<%= render @posts %>

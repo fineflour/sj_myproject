@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def update
     if current_user.update_attributes(user_params)
@@ -13,10 +13,12 @@ class UsersController < ApplicationController
  end
 
   def show
-    if current_user
+  #  if current_user
       @user = User.find(params[:id])
+      @posts = @user.posts.visible_to(current_user)
+      @comments = @user.comments
       #@address = Address.find(1)
-      @addresses = @user.addresses.where(user_id: params[:id]).all #.where('status_id= 1').first
+      #@addresses = @user.addresses.where(user_id: params[:id]).all #.where('status_id= 1').first
       #@state = State.find(@address.state_id)
 #.where(user_id: params[:id]).first
 #(cast(user_id as integer) => current_user.id).where("status = 1").order('id desc').first
@@ -26,9 +28,9 @@ class UsersController < ApplicationController
          format.xml { render :xml => @user }
       end
 
-    else
-      redirect_to user_session_path
-    end
+ #   else
+ #     redirect_to user_session_path
+ #   end
   end
 
   def user_params

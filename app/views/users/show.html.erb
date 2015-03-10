@@ -1,5 +1,22 @@
-<% provide(:title, 'My Todo List') %>
-<h1>User Profile</h1>
+<!-- provide(:title, 'My Todo List') %-->
+
+<h1><%= @user.name %></h1>
+<div class="row">
+   <div class="tabbable tabs-left">
+     <ul class="nav nav-tabs">
+       <li class="active"><a href="#posts" data-toggle="tab">Posts</a></li>
+       <li><a href="#comments" data-toggle="tab">Comments</a></li>
+     </ul>
+     <div class="tab-content">
+       <div class="tab-pane active" id="posts">
+         <%= render @posts %>
+       </div>
+       <div class="tab-pane" id="comments">
+         <%= render @comments %>
+       </div>
+     </div>
+   </div>
+ </div>
 
   <table class="table table-striped table-bordered">
      <tr>
@@ -20,7 +37,7 @@
       </div>
 
       <div class='new-address'>
-      <%= render 'addresses/form' %>
+      <!--= render 'addresses/form' -->
       </div>
     </td>
   </tr>

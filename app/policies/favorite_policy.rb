@@ -1,7 +1,5 @@
 class FavoritePolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope
+    def create?
+    user.present? && user.admin?
     end
-  end
 end

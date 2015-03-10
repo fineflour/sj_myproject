@@ -16,6 +16,7 @@ gem "heroku"
 #  gem 'sqlite3'
 #end
 #
+gem "capybara"
 gem 'pusher'
 gem 'devise'
 gem 'pundit'
