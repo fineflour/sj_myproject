@@ -21,6 +21,8 @@ gem 'pusher'
 gem 'devise'
 gem 'pundit'
 gem 'redcarpet'
+gem 'database_cleaner'
+#gem 'factory_girl_rails', '~> 4.0'
 #gem 'carrierwave'
 #gem 'mini_magick'
 
@@ -53,7 +55,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'rspec'
 end
 
