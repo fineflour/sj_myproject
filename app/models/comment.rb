@@ -4,16 +4,16 @@ class Comment < ActiveRecord::Base
   
   validates :post, presence: true
   validates :body, presence: true
-  default_scope { order('created_at DESC') }
+  default_scope { order('updated_at DESC') }
 
-after_create :send_favorite_emails
+#after_create :send_favorite_emails
 
 private
 
 def send_favorite_emails
     post.favorites.each do |favorite|
       if should_receive_update_for?(favorite)
-        FavoriteMailer.new_comment(favorite.user, post, self).deliver
+        #FavoriteMailer.new_comment(favorite.user, post, self).deliver
       end
     end
   end
