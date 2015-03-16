@@ -10,7 +10,15 @@
         | <%= link_to "Delete", [comment.post, comment], method: :delete, remote: true %>
       <% end %>
     </small>
+
+    <% if current_user.id == comment.user_id %>
+      <%= content_tag :div, class: 'media', id: "comment-update-#{comment.id}" do %>
+     <%= render partial: 'comments/update', locals: { post: comment.post, comment: comment } %>
+      <% end %>
+    <% else %>
     <p><%= comment.body %></p>
+    <% end %>
   </div>
   <% end %>
 </div>
+

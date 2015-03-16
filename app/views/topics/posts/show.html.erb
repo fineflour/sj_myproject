@@ -10,7 +10,9 @@
     </small>
     <p><%= markdown_to_html @post.body %></p>
 
-     <p>[<%= @comments.count %> Comments]</p>
+    <div class='js-comments-count'>
+      <p>[<%= @comments.count %> Comments]</p>
+    </div>
       <div class='js-comments'>
         <%= render partial: 'comments/comment', collection: @comments %>
       </div>

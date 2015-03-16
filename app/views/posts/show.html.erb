@@ -10,11 +10,12 @@
     </small>
     <p><%= markdown_to_html @post.body %></p>
     <!--p><= image_tag(@post.image_url) if @post.image? %></p-->
-    
-    <h3><%= @comments.count %> Comments</h3>
-      <div class='js-comments'>
+    <div class='js-comments-count'> 
+      <h3>[<%= @comments.count %> Comments]</h3>
+    </div>
+     <div class='js-comments'>
         <%= render partial: 'comments/comment', collection: @comments %>
-      </div>
+     </div>
       <div class = 'new-comment'>
         <% if policy(@comment).create? %>
           <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>

@@ -40,6 +40,31 @@ class CommentsController < ApplicationController
     end
    end
 
+  def edit
+   @post = Post.find(params[:post_id])
+   @comment = @post.comments.find(params[:id])
+        respond_to do |format|
+        format.html
+        format.js
+      end
+  end
+
+  def update
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+     authorize @comment
+          if @comment.update_attributes(comment_params)
+            flash[:notice] = "Post was updated"
+          else
+            flash[:error] = "There was an error saving the post. Please try again."
+          end
+       # respond_to do |format|
+       # respond_with(@comment) do |format|
+        #respond_to do |format|
+        #format.html
+        #format.js
+      #end
+  end
 
   def destroy
      @post = Post.find(params[:post_id])
