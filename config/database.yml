@@ -12,7 +12,7 @@ default: &default
 development:
   #<<: *default
   adapter: postgresql 
-  database: db/dev_post
+  database: db/dev_myproject
   timeout: 5000
   
 
@@ -22,13 +22,13 @@ development:
 test:
   #<<: *default
   adapter: postgresql 
-  database: db/test_post
+  database: db/test_myproject
   pool: 5
   timeout: 5000
 
 production:
   #<<: *default
   adapter: postgresql 
-  database: db/prod_post
+  database: db/prod_myproject
   pool: 5
   timeout: 5000

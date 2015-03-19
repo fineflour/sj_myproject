@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303190844) do
+ActiveRecord::Schema.define(version: 20150317185403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.string   "zipcode"
+    t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_active",              default: true
+    t.string   "city",       limit: 100
+    t.string   "state",      limit: 2
+    t.integer  "type",       limit: 2
+  end
+
+  add_index "addresses", ["city_id"], name: "index_addresses_on_city_id", using: :btree
+  add_index "addresses", ["contact_id"], name: "index_addresses_on_contact_id", using: :btree
+  add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
 
   create_table "api_keys", force: true do |t|
     t.string   "access_token"
@@ -28,6 +47,17 @@ ActiveRecord::Schema.define(version: 20150303190844) do
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
 
+  create_table "cities", force: true do |t|
+    t.integer  "state_id"
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "body"
     t.integer  "post_id"
@@ -39,6 +69,48 @@ ActiveRecord::Schema.define(version: 20150303190844) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "contact_comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.integer  "contact_id"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_comments", ["contact_id"], name: "index_contact_comments_on_contact_id", using: :btree
+  add_index "contact_comments", ["order_id"], name: "index_contact_comments_on_order_id", using: :btree
+  add_index "contact_comments", ["user_id"], name: "index_contact_comments_on_user_id", using: :btree
+
+  create_table "contact_emails", force: true do |t|
+    t.integer  "contact_id"
+    t.string   "email"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contact_emails", ["contact_id"], name: "index_contact_emails_on_contact_id", using: :btree
+
+  create_table "contacts", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.integer  "age",                           default: 0
+    t.boolean  "is_deleted"
+    t.boolean  "is_ops_contact"
+    t.boolean  "followup_interest"
+    t.boolean  "biblestudy_interest"
+    t.datetime "date_contacted"
+    t.datetime "date_imported"
+    t.integer  "language_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ops_customer_id"
+    t.string   "gender",              limit: 1
+  end
+
+  add_index "contacts", ["language_id"], name: "index_contacts_on_language_id", using: :btree
+
   create_table "favorites", force: true do |t|
     t.integer  "post_id"
     t.integer  "user_id"
@@ -49,8 +121,63 @@ ActiveRecord::Schema.define(version: 20150303190844) do
   add_index "favorites", ["post_id"], name: "index_favorites_on_post_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
+  create_table "groups", force: true do |t|
+    t.integer  "team_id"
+    t.string   "name"
+    t.string   "calender"
+    t.string   "description"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups", ["team_id"], name: "index_groups_on_team_id", using: :btree
+
+  create_table "material_categories", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "materials", force: true do |t|
+    t.integer  "MaterialCategory_id"
+    t.string   "name"
+    t.string   "shortname"
+    t.string   "description"
+    t.boolean  "is_active"
+    t.integer  "language_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "materials", ["MaterialCategory_id"], name: "index_materials_on_MaterialCategory_id", using: :btree
+  add_index "materials", ["language_id"], name: "index_materials_on_language_id", using: :btree
+
+  create_table "order_products", force: true do |t|
+    t.integer  "material_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order_id"
+  end
+
+  add_index "order_products", ["material_id"], name: "index_order_products_on_material_id", using: :btree
+  add_index "order_products", ["order_id"], name: "index_order_products_on_order_id", using: :btree
+  add_index "order_products", ["status_id"], name: "index_order_products_on_status_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.integer  "contact_id"
+    t.boolean  "is_ops_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["contact_id"], name: "index_orders_on_contact_id", using: :btree
+
   create_table "posts", force: true do |t|
     t.text     "body"
+    t.string   "image"
     t.float    "rank"
     t.string   "title"
     t.integer  "topic_id"
@@ -60,6 +187,24 @@ ActiveRecord::Schema.define(version: 20150303190844) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "states", force: true do |t|
+    t.string   "name"
+    t.string   "abbname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", force: true do |t|
+    t.integer  "city_id"
+    t.string   "name"
+    t.string   "calender"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["city_id"], name: "index_teams_on_city_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.string   "name"
@@ -105,5 +250,16 @@ ActiveRecord::Schema.define(version: 20150303190844) do
 
   add_index "votes", ["post_id"], name: "index_votes_on_post_id", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+
+  create_table "zipcodes", force: true do |t|
+    t.integer  "city_id"
+    t.string   "zipcode_id"
+    t.string   "zipcode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "type"
+  end
+
+  add_index "zipcodes", ["city_id"], name: "index_zipcodes_on_city_id", using: :btree
 
 end

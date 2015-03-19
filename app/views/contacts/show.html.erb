@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <h3><%= @contact.firstname %>
+      <%= @contact.lastname %></h3>
+    </div>
+</div>
+      <%= render partial: 'addresses/form', local: {user: @user, address: @address} %>

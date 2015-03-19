@@ -1,5 +1,6 @@
 Blocmarks::Application.routes.draw do
 
+
  # get 'addresses/destroy'
  # get 'users_admin/' => 'users_admin#index'
  # get 'users_admin/show/:id' => 'users_admin#show'
@@ -23,6 +24,13 @@ Blocmarks::Application.routes.draw do
 
   root 'home#index'
   get 'about' => 'welcome#about'
+
+resources :contacts do
+  resources :addresses
+  resources :contact_emails
+  resources :contact_comments
+end
+  
 end
 
 #    resources :item, only: [:create, :update] 

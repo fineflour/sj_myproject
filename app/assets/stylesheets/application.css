@@ -38,3 +38,7 @@
 .voted {
   opacity: 0.5;
 }
+
+input, textarea {
+  size: 20px;
+}

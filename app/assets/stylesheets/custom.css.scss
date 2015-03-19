@@ -104,15 +104,20 @@ footer {
 
 input, textarea, select, .uneditable-input {
     border: 1px solid #bbb;
-      width: 100%;
-        margin-bottom: 15px;
+      width: 200px;
+        margin-bottom: 20px;
         }
 
         input {
             height: auto !important;
 }
 
- 
+label {
+  margin-right: 20px;
+  margin-left: 20px;
+
+}
+
 error_explanation {
   color: red;
   ul {
@@ -127,6 +132,14 @@ error_explanation {
   }
 }
 
+.jumbotron  {
+  padding-top: 0;
+  margin-top: 0px;
 
+  h3 {
+   display: inline-block;
+   margin: 0;
+  }
+}
 
 
