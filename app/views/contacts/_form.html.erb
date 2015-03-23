@@ -1,0 +1,22 @@
+<div  class="panel panel-default">
+<div class="panel-heading"><b>Contact Information</b>   
+<%= link_to "update", contact_address_path(:contact_id => @contact.id, :id => @address.id), class: "btn btn-default btn-xs active" %></div> 
+<div class="panel-body">
+<%= form_for(@contact_info, :html => {:class => "inline"}) do |f| %>
+ <div class="row">
+    <div class="col-xs-2 col-sm-2">
+    <%= f.label :Email, :html => {:class => "sr-only"} %>
+    </div>
+    <div class="col-xs-4 col-sm-4">
+    <%= f.text_field :email, :html => {:class => "form-control", :placeholder => "Username"}  %>
+    </div>
+    <div class="col-xs-2 col-sm-2">
+    <%= f.label :Phone, :html => {:class => "sr-only"} %>
+    </div>
+    <div class="col-xs-4 col-sm-4">
+    </div>
+</div>
+<% end %>
+
+</div>
+</div>

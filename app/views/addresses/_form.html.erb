@@ -1,18 +1,7 @@
 <div  class="panel panel-default">
-<div class="panel-heading">Address</div>
+<div class="panel-heading"><b>Address</b>   <%= link_to "update", contact_address_path(:contact_id => @contact.id, :id => @address.id), class: "btn btn-default btn-xs active" %></div> 
 <div class="panel-body">
 <%= form_for([@address.contact, @address], :html => {:class => "inline"}) do |f| %>
-
-  <% if @address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this comment from being saved:</h2>
-      <ul>
-      <% @address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="row">
     <div class="col-xs-2 col-sm-2">
@@ -29,25 +18,46 @@
     </div>
 </div>
 
-  <div class="input-group">
+  <div class="row">
+
+    <div class="col-xs-2 col-sm-2">
       <%= f.label :City %>
+    </div>
+    <div class="col-xs-4 col-sm-4">
       <%= f.text_field :city%>                                                                         
+    </div>
+    <div class="col-xs-2 col-sm-2">
       <%= f.label :State %>                                                              
+    </div>
+    <div class="col-xs-4 col-sm-4">
     <% if (controller_name=='address' and action_name =='edit') %>
       <%= f.collection_select :state_id, @states, :id, :abbname, include_blank: true %>     
     <% else %>
       <%= collection_select :address, :state_id, State.all.order('name asc'), :id, :name, prompt: true %>
     <% end %>
+    </div>
+</div>
+
+  <div class="row">
+    <div class="col-xs-2 col-sm-2">
     <%= f.label :Zipcode %>                                                        
+    </div>
+    <div class="col-xs-4 col-sm-4">
     <%= f.text_field :zipcode %>
+    </div>
+    <div class="col-xs-2 col-sm-2">
+    </div>
+    <div class="col-xs-4 col-sm-4">
+    </div>
   </div> 
 
 <div class="row">
-  <div class="actions">
-    <%= f.submit %>
+  <div class="col-xs-12 col-sm-12">
+  <div class="actions" align="center">
+    <%= f.submit :html => {:class => "btn btn-primary"} %>
   </div>
 </div>
-<% end %>
 </div>
+<% end %>
 </div>
 </div>

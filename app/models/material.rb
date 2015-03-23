@@ -1,3 +1,4 @@
 class Material < ActiveRecord::Base
-  has_many :material_categories
+  has_and_belongs_to_many :material_categories
+  has_many :order_products
 end

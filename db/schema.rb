@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317185403) do
+ActiveRecord::Schema.define(version: 20150323170200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,25 +155,33 @@ ActiveRecord::Schema.define(version: 20150317185403) do
   add_index "materials", ["language_id"], name: "index_materials_on_language_id", using: :btree
 
   create_table "order_products", force: true do |t|
+    t.integer  "contact_id"
+    t.boolean  "is_ops_order"
+    t.integer  "ops_order_id"
     t.integer  "material_id"
-    t.integer  "status_id"
+    t.integer  "status"
+    t.datetime "ops_date_markasshiped"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order_id"
   end
 
+  add_index "order_products", ["contact_id"], name: "index_order_products_on_contact_id", using: :btree
   add_index "order_products", ["material_id"], name: "index_order_products_on_material_id", using: :btree
-  add_index "order_products", ["order_id"], name: "index_order_products_on_order_id", using: :btree
-  add_index "order_products", ["status_id"], name: "index_order_products_on_status_id", using: :btree
+  add_index "order_products", ["ops_order_id"], name: "index_order_products_on_ops_order_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.integer  "contact_id"
     t.boolean  "is_ops_order"
+    t.integer  "ops_order_id"
+    t.datetime "ops_date_ordered"
+    t.datetime "ops_date_fulfilled"
+    t.datetime "ops_date_markasshiped"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "orders", ["contact_id"], name: "index_orders_on_contact_id", using: :btree
+  add_index "orders", ["ops_order_id"], name: "index_orders_on_ops_order_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.text     "body"

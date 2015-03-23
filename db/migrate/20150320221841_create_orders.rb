@@ -3,8 +3,10 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.references :contact, index: true
       t.boolean :is_ops_order
-      t.timestamps :ops_date_ordered
-      t.timestamps :ops_date_fulfilled
+      t.integer :ops_order_id
+      t.datetime :ops_date_ordered
+      t.datetime :ops_date_fulfilled
+      t.datetime :ops_date_markasshiped
 
       t.timestamps
     end

@@ -5,4 +5,8 @@
       <%= @contact.lastname %></h3>
     </div>
 </div>
-      <%= render partial: 'addresses/form', local: {user: @user, address: @address} %>
+      <%= render partial: 'contacts/form', local: {contact: @contact_info} %>
+      <%= render partial: 'addresses/form', local: {contact: @contact, address: @address} %>
+      <%= render partial: 'orders/list', local: {orders: @orders, order_products: @order_products} %>
+
+</div>

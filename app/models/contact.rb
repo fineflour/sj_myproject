@@ -2,6 +2,7 @@ class Contact < ActiveRecord::Base
   has_many :addresses
   has_many :contact_emails
   has_many :orders
+  has_many :order_products, :through => :order
 
   default_scope { order('created_at DESC')}
 

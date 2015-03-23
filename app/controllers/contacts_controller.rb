@@ -10,8 +10,12 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
-    #@contact = Contact.contacts_detail.find(params[:id]) 
+    @contact_info = Contact.contacts_detail.find(params[:id]) 
     @address = @contact.addresses.where(is_active: true).first
+    @orders = @contact.orders.all
+#    @order_products = OrderProduct.all
+  #Order.orders_detail(params[:id])
+
     #@email = @contact.email.where(is_active: true).first  
     #@contact.address = @address
     #@contact.email = @email
