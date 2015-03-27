@@ -1,7 +1,7 @@
 <div  class="panel panel-default">
 <div class="panel-heading"><b>Contact Information</b>   
-<%= link_to "update", contact_address_path(:contact_id => @contact.id, :id => @address.id), class: "btn btn-default btn-xs active" %></div> 
 <div class="panel-body">
+<= link_to "update", order_address_path(:contact_id => @contact.id, :id => @address.id), class: "btn btn-default btn-xs active" %></div> 
 <%= form_for(@contact_info, :html => {:class => "inline"}) do |f| %>
  <div class="row">
     <div class="col-xs-2 col-sm-2">

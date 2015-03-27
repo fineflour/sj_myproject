@@ -24,15 +24,20 @@ Blocmarks::Application.routes.draw do
   root 'home#index'
   get 'about' => 'welcome#about'
 
-resources :contacts do
-  resources :addresses
+resources :contacts, only: [:index, :show] do
+   resources :addresses
+   resources :contact_emails
+   resources :orders, except: [:index], controller: 'contacts/orders' 
+   resources :order_products
+end
+
+  resources :orders,  only: [:index] do 
   resources :contact_emails
   resources :contact_comments
-  resources :orders do
-    resources :order_products
-  end
+  resources :orders, only: [:index, :show] do
+  resources :order_products
+  end 
 end
-  
 end
 
 #    resources :item, only: [:create, :update] 

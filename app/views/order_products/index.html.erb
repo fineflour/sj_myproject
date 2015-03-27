@@ -1,2 +1,3 @@
-<h1>OrderProducts#index</h1>
-<p>Find me in app/views/order_products/index.html.erb</p>
+<% @orders.each do |order| %>
+  <%= order.id %>
+<% end %>

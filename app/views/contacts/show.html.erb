@@ -7,6 +7,8 @@
 </div>
       <%= render partial: 'contacts/form', local: {contact: @contact_info} %>
       <%= render partial: 'addresses/form', local: {contact: @contact, address: @address} %>
-      <%= render partial: 'orders/list', local: {orders: @orders, order_products: @order_products} %>
+      <%= render partial: 'orders/order', local: {order: @order} %>
+      <#= render partial: 'orders/list', local: {orders: @orders} %>
+
 
 </div>

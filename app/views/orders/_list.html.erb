@@ -1,23 +1,16 @@
 <div  class="panel panel-default">
 <div class="panel-heading">Order Information</div>
 <div class="panel-body">
-<%= @orders.each do |order| %>
+<%= [@orders].each do |order| %>
 
 <div class="row">
     <div class="col-xs-12 col-sm-12">
-    Order ID : <%= order.ops_order_id  %>
-    Order Date : <%= order.ops_date_ordered %>
-    Completed Date  : <%= order.ops_date_markasshiped  %>
+      <%= order.ops_date_ordered %>
     </div>
 </div>
 
 <div class="row">
-
-  <%= form_for [@contact, order, @order_products] do |f| %>
-    Order Date : <%= order.ops_date_ordered %>
-  <% end %>
-      <#= render partial: 'order_products/form', local: {contact: @contact, order: order, order_detail: @order_detail} %>
-
+      <#= render partial: 'order_products/form', local: {contact: @contact, order: order, order_product: @order_product} %>
 </div>
 <% end %>
 </div>

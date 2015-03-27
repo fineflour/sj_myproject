@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   
   def index
-    @contacts = Contact.contacts_info.paginate(page: params[:page], per_page: 100) 
+    @contacts = Contact.contacts_detail.paginate(page: params[:page], per_page: 100) 
     @contacts_count = Contact.all.count
 #    @address = @contacts.joins(:addresses).order('updated_at DESC').first
 #    @contacts.address = @address
@@ -10,16 +10,10 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
-    @contact_info = Contact.contacts_info.find(params[:id]) 
+    @contact_info = Contact.contacts_detail.find(params[:id]) 
     @address = @contact.addresses.where(is_active: true).first
-    #@contact.addresses = @address
-    @order = @contact.orders.first 
-    #.all(:includes => :order_products)
-      #.order_detail(params[:id]).first
-    #@contact.orders = @orders
-    #@contact_order_info = Contact.contact_order_info.find(params[:id])
-    #@order_details = @orders.order_products.order_detail.all  
-#    @order_products = @orders.where(ops_order_id: @orders.ops_order_id)
+    @orders = @contact.orders.all  
+#    @order_products = @orders.where(
       #@contact.orders.all
     #@order_details = Order.order_detail(params[:id])
 #.all
